@@ -23,7 +23,7 @@ exports.namesRouter.use(express_1.default.json());
 // GET
 exports.namesRouter.get("/", (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const names = (yield database_service_1.collections.names.find({}).limit(20).toArray());
+        const names = (yield database_service_1.collections.names.find({}).sort({ $natural: -1 }).limit(20).toArray());
         res.status(200).send(names);
     }
     catch (error) {
