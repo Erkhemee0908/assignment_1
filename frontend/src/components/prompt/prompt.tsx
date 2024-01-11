@@ -17,7 +17,7 @@ export default function Prompt(props: any) {
         setName('')
         try {
             // POST call to server
-            const res = await fetch('http://localhost:8080/names', {
+            const res = await fetch(`${props.url}/names`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(request)
@@ -56,11 +56,13 @@ export default function Prompt(props: any) {
                     value={name}
                     onChange={(e) => { setName(e.target.value) }}
                 />
-                <button
+                <div
                     data-testid="submit-name"
+                    onClick={handleSubmit}
+                    style={{ cursor: 'pointer', display: 'inline-block' }}
                 >
                     ➡️
-                </button>
+                </div>
             </form>
         </section>
     )

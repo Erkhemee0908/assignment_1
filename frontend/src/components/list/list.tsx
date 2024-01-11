@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
+import * as dotenv from "dotenv";
 
 export default function List(props: any) {
+
 
 
     const [names, setNames] = useState<Name[]>([])
@@ -11,7 +13,7 @@ export default function List(props: any) {
 
     //  useEffect hook triggers GET request every time props are updated
     useEffect(() => {
-        fetch('http://localhost:8080/names')
+        fetch(`${props.url}/names`)
             .then((res) => {
                 return res.json()
             })
@@ -33,7 +35,7 @@ export default function List(props: any) {
     // removin name from list
     const handleRemove = async (id: string) => {
         try {
-            const response = await fetch(`http://localhost:8080/names/${id}`, {
+            const response = await fetch(`${props.url}/names/${id}`, {
                 method: 'DELETE',
             });
 
